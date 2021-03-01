@@ -128,7 +128,9 @@ function showFinalScore () {
   let scoreElement = $("<h2>").text("Final Score: " + score + "/4");
   scoreElement.addClass('final-score');
   $('.scoreDiv').append(scoreElement);
+  saveScore ()
 }
+
 
 function init () {
   $(".nextBtn").hide ();
