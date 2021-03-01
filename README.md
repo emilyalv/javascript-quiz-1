@@ -16,9 +16,11 @@ The <code>javascript-quiz-1</code> repository contains HTML, CSS & JavaScript fi
 My random password generator can be found here: <a href="https://emilyalv.github.io/javascript-quiz-1/.">https://emilyalv.github.io/javascript-quiz-1/.</a>
 
 The Javascript Quiz includes storing questions, answer choies, and the correct answers in objects and looping through those objects to display each question and its respective answer choices. The user's choice is then compared with the correct answer to determine the user's score. The quiz is timed, and ends automatically if the timer runs out. 
-
+<hr />
 <img src="./assets/images/quizstart.png">
+<hr />
 <img src="./assets/images/quizquestions.png">
+<hr />
 <img src="./assets/images/quizscore.png">
 
 
