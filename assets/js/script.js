@@ -23,7 +23,7 @@ var currentQuestion;
 questionEl = document.querySelector ('#questionsP');
 
 //timer variables
-var timerCount = 20;
+var timerCount = 15;
 var timer;
 var timerElement = document.querySelector(".timer-count");
 
@@ -31,6 +31,7 @@ var timerElement = document.querySelector(".timer-count");
 var userSelection;
 var currentCorrectChoice;
 var score = 0;
+var scoreElement = document.querySelector(".scoreDiv");
 
 //run quiz function
 function runQuiz () {
@@ -67,6 +68,7 @@ function runQuiz () {
   $(".choice-btn").click(function() {
     let userSelection = (this).textContent; 
     $( ".choice-btn" ).remove();
+    $(".nextBtn").show ();
     //check user's answer
     console.log ("user chose " + userSelection);
     console.log ("correct choice " + currentCorrectChoice);
@@ -80,7 +82,7 @@ function runQuiz () {
   //on to next question!
     i++;
   console.log (i);
-  $(".nextBtn").show ();
+  
 }
 
 
@@ -102,7 +104,7 @@ function startTimer() {
     timerElement.textContent = "Time Left: " + timerCount + " seconds";
     if (timerCount >= 0) {
       // Tests if finished condition is met
-      if ( i >= questionsArray.length && timerCount > 0) {
+      if ( i === 4 && timerCount > 0) {
         // Clears interval and stops timer
         clearInterval(timer);
         showFinalScore();
@@ -112,7 +114,8 @@ function startTimer() {
     if (timerCount === 0) {
       // Clears interval
       clearInterval(timer);
-      timerElement.textContent = ("Time's up!")
+      // timerElement.textContent = ("Time's up!");
+      showFinalScore();
     }
   }, 1000);
 }
@@ -122,6 +125,9 @@ function showFinalScore () {
   $(".nextBtn").remove ();
   $(".choice-btn" ).remove();
   $(".timer-count").remove();
+  let scoreElement = $("<h2>").text("Final Score: " + score + "/4");
+  scoreElement.addClass('final-score');
+  $('.scoreDiv').append(scoreElement);
 }
 
 function init () {
