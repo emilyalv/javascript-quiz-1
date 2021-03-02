@@ -32,9 +32,11 @@ var userSelection;
 var currentCorrectChoice;
 var score = 0;
 var scoreElement = document.querySelector(".scoreDiv");
+var scoreTracker = 0;
 
 //run quiz function
 function runQuiz () {
+  $(".nextBtn").hide ();
   //select current question
   let currentQuestion = questionsArray[i].quizQuestion;
   console.log (currentQuestion);
@@ -89,7 +91,7 @@ function runQuiz () {
 //what happens when Next button is clicked
   $(".nextBtn").click(function() {
   $( ".question-text" ).remove();
-  if (i < questionsArray.length){
+  if (i < 4){
   runQuiz ();
   }
   else (console.log ("else"))
@@ -114,8 +116,13 @@ function startTimer() {
     if (timerCount === 0) {
       // Clears interval
       clearInterval(timer);
-      // timerElement.textContent = ("Time's up!");
-      showFinalScore();
+      $(".question-text" ).remove();
+      $(".nextBtn").remove ();
+      $(".choice-btn" ).remove();
+      $(".timer-count").remove();
+      let scoreElement = $("<h2>").text("Time's up! Final Score: " + score + "/4");
+      scoreElement.addClass('final-score');
+      $('.scoreDiv').append(scoreElement);
     }
   }, 1000);
 }
@@ -131,6 +138,15 @@ function showFinalScore () {
   saveScore ()
 }
 
+function saveScore () {
+  //show scorebox form
+  // Updates win count on screen and sets win count to client storage
+    //save score to local storage
+
+  score.textContent = scoreTracker;
+  localStorage.setItem("scoreTracker", scoreTracker);
+  //restart
+}
 
 function init () {
   $(".nextBtn").hide ();
@@ -141,6 +157,7 @@ init ();
 //what happens when start button clicked
 $(".startBtn").click(function() {
   $(".startBtn").hide ();
+ 
     runQuiz ();
     startTimer ();
   }
