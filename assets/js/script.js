@@ -32,6 +32,8 @@ var userSelection;
 var currentCorrectChoice;
 var score = 0;
 var scoreElement = document.querySelector(".scoreDiv");
+var previousScoreEl = document.querySelector(".previousScoreDiv");
+
 var scoreTracker = 0;
 
 //run quiz function
@@ -136,20 +138,29 @@ function showFinalScore () {
   scoreElement.addClass('final-score');
   $('.scoreDiv').append(scoreElement);
   saveScore ()
+  // restartQuiz (); 
 }
 
 function saveScore () {
-  //show scorebox form
-  // Updates win count on screen and sets win count to client storage
-    //save score to local storage
-
   score.textContent = scoreTracker;
-  localStorage.setItem("scoreTracker", scoreTracker);
-  //restart
+  localStorage.setItem("scoreTracker", score);
+  
 }
+
+function getScore() {
+  // Get stored value from client storage, if it exists
+  var storedScores = localStorage.getItem("scoreTracker");
+  console.log (storedScores);
+  }
+  
+// function restartQuiz () {
+//   $(".startBtn").show ();
+//   let i = 0;
+// }
 
 function init () {
   $(".nextBtn").hide ();
+  getScore ();
 }
 
 init ();
@@ -157,7 +168,6 @@ init ();
 //what happens when start button clicked
 $(".startBtn").click(function() {
   $(".startBtn").hide ();
- 
     runQuiz ();
     startTimer ();
   }
